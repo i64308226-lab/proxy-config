@@ -1,0 +1,32 @@
+name: Update PAC Proxy
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Запуск каждые 6 часов
+  workflow_dispatch: # Позволяет запустить сборку вручную кнопкой
+
+jobs:
+  build:
+    runs-runs-on: ubuntu-latest
+    permissions:
+      contents: write # Разрешаем гитхабу сохранять файл обратно в репозиторий
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Run Scraper and Generate PAC
+      run: python build_pac.py
+
+    - name: Commit and Push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add proxy.pac
+        git commit -m "Auto-update proxy list" || exit 0
+        git push
