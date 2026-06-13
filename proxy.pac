@@ -10,5 +10,5 @@ function FindProxyForURL(url, host) {
     }
 
     // 3. Всё остальное пускаем через собранные рабочие прокси
-    return "PROXY 84.47.150.125:1080; PROXY 161.49.100.131:1080; PROXY 190.128.228.182:80; DIRECT";
+    return "PROXY 45.225.207.183:999; PROXY 103.112.212.57:83; PROXY 45.39.115.52:5463; DIRECT";
 }
