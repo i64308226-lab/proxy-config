@@ -1,15 +1,15 @@
-name: Update PAC Proxy
+name: Daily Proxy Update and Restart
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Запуск каждые 6 часов
-  workflow_dispatch: # Позволяет запустить сборку вручную кнопкой
+    - cron: '0 2 * * *' # Каждый день ровно в 02:00 UTC (это 5:00 утра по МСК)
+  workflow_dispatch: # Оставляем кнопку для ручного запуска в любое время
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Разрешаем гитхабу сохранять файл обратно в репозиторий
+      contents: write
 
     steps:
     - name: Checkout repository
@@ -28,5 +28,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add proxy.pac
-        git commit -m "Auto-update proxy list" || exit 0
+        git commit -m "Daily auto-update 5 AM" || exit 0
         git push
