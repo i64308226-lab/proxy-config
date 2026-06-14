@@ -1,7 +1,7 @@
 def generate_pac():
     # Адрес твоего созданного прокси-сервера на Hugging Face
     # Порт для входящих HTTP-подключений снаружи обычно мапится на 80 или 443
-    PROXY_HOST = "твой_ник-my-vless-proxy.hf.space" 
+    PROXY_HOST = "ilyapg-Http-proxy-for-Rus.hf.space" 
     PORT = "443"
     
     pac_content = f"""function FindProxyForURL(url, host) {{
