@@ -1,14 +1,14 @@
 function FindProxyForURL(url, host) {
-    // 1. Локальные адреса напрямую
-    if (isPlainHostName(host) || shExpMatch(host, "192.168.*") || host == "localhost") {
+    // 1. Рунет напрямую
+    if (shExpMatch(host, "*.ru") || 
+        shExpMatch(host, "*.рф") || 
+        shExpMatch(host, "*.vk.com") || 
+        shExpMatch(host, "*.ok.ru") || 
+        shExpMatch(host, "*yandex*") || 
+        shExpMatch(host, "*mail.ru")) {
         return "DIRECT";
     }
 
-    // 2. Рунет напрямую
-    if (shExpMatch(host, "*.ru") || shExpMatch(host, "*.рф")) {
-        return "DIRECT";
-    }
-
-    // 3. Всё остальное пускаем через собранные рабочие прокси
-    return "PROXY 107.173.93.135:6089; PROXY 159.65.166.126:8118; PROXY 115.74.159.224:1080; DIRECT";
+    // 2. Все остальные имбовые зарубежные сайты гоним через Hugging Face VLESS-мост
+    return "PROXY ilyapg-Http-proxy-for-Rus.hf.space:443; DIRECT";
 }
